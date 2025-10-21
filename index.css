@@ -1,0 +1,141 @@
+/* Definições globais e reset básico */
+:root {
+   --cor-fundo: #f4f4f9; /* Cinza muito claro */
+   --cor-primaria: #007bff; /* Azul vibrante para botões principais */
+   --cor-secundaria: #dc3545; /* Vermelho para o botão de consertar */
+   --cor-texto: #333;
+   --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.1);
+   --sombra-brilho-amarelo: 0 0 50px 10px rgba(255, 255, 0, 0.7); /* Brilho para lâmpada ligada */
+   --sombra-brilho-cinza: 0 0 15px 5px rgba(100, 100, 100, 0.5); /* Brilho para lâmpada desligada/quebrada */
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   font-family: "Arial", sans-serif;
+   background-color: var(--cor-fundo);
+   color: var(--cor-texto);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+   padding: 20px;
+}
+
+/* Estilo do cabeçalho */
+header {
+   margin-bottom: 40px;
+}
+
+header h1 {
+   font-size: 2.5em;
+   color: var(--cor-texto);
+   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Contêiner principal da lâmpada */
+.lampada {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 30px;
+   padding: 40px;
+   background: #fff;
+   border-radius: 15px;
+   box-shadow: var(--sombra-leve);
+}
+
+/* Estilo da imagem da lâmpada */
+#lampada {
+   width: 250px;
+   height: 250px;
+   border-radius: 50%; /* Faz a imagem parecer mais um globo de luz */
+   cursor: pointer;
+   transition: transform 0.3s ease, box-shadow 0.5s ease;
+   object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer muito */
+   border: 5px solid #ccc;
+}
+
+/* Efeito ao passar o mouse sobre a lâmpada (Dica: o JS já muda a imagem, o CSS adiciona o charme) */
+#lampada:hover {
+   transform: scale(1.02);
+}
+
+/* Estilo do brilho: O JS deve verificar se a imagem atual é 'ligada.jpg' e adicionar a classe 'ligada' à imagem. */
+/* Como o JS já troca a imagem, podemos usar um seletor de atributo, mas adicionar uma classe é mais robusto para efeitos. */
+/* Se a imagem for 'ligada.jpg', o brilho é aplicado. */
+#lampada[src$="ligada.jpg"] {
+   box-shadow: var(--sombra-brilho-amarelo);
+   border-color: gold;
+}
+
+/* Se a imagem for 'desligada.jpg', um brilho suave de desligada é aplicado. */
+#lampada[src$="desligada.jpg"] {
+   box-shadow: var(--sombra-brilho-cinza);
+   border-color: #aaa;
+}
+
+/* Se a imagem for 'quebrada.jpg', a sombra é mais escura. */
+#lampada[src$="quebrada.jpg"] {
+   box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.4);
+   border-color: darkred;
+}
+
+/* Contêiner dos botões */
+.botao {
+   display: flex;
+   gap: 20px;
+}
+
+/* Estilo base para todos os botões */
+.botao button {
+   padding: 10px 25px;
+   font-size: 1em;
+   font-weight: bold;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   box-shadow: var(--sombra-leve);
+}
+
+/* Estilo do botão Ligar/Desligar */
+#ligarDesligar {
+   background-color: var(--cor-primaria);
+   color: white;
+}
+
+#ligarDesligar:hover {
+   background-color: #0056b3; /* Azul mais escuro no hover */
+   transform: translateY(-2px);
+   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#ligarDesligar:active {
+   transform: translateY(0);
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do botão Consertar (Vermelho) */
+#consertar {
+   background-color: var(--cor-secundaria);
+   color: white;
+}
+
+#consertar:hover {
+   background-color: #bd2130; /* Vermelho mais escuro no hover */
+   transform: translateY(-2px);
+   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#consertar:active {
+   transform: translateY(0);
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
